@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- v-modle和那两个数值绑定 -->
+    <div id="app">
+        <div>
+            <h1>简易计算机案例</h1>
+        </div>
+        <div>
+            <span>输入A值</span>
+            <span>
+                <input type="text" v-model='a'>
+            </span>
+        </div>
+        <div>
+            <span>输入B值</span>
+            <span>
+                <input type="text" v-model='b'>
+            </span>
+        </div>
+        <div>
+            <span>结果是</span>
+            <span v-text='result'></span>
+        </div>
+        <div>
+            <button @click='handle'>计算</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                a: '',
+                b: '',
+                result: '',
+            },
+            methods: {
+                handle: function() {
+                    this.result = parseInt(this.a) + parseInt(this.b);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

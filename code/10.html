@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        1.父组件象子组件传值
+        1.1组件内通过props接受传递过来的值
+        1.2父组件通过属性把值传递给子组件
+
+        子组件向父组件传值
+        1.子组件通过自定义事件向父组件传递信息
+        <button @click='$emit{"enlarge-text"}'></button>
+        2.父组件监听子组件的事件
+        <menu-itme @click:enlarge-text='fontsize+=0.1'>
+        
+        子组件向父组件传值
+        
+     -->
+    <div id="app">
+        <menu-item title="来自组件的数据"></menu-item>
+        <menu-item :title="psmg" content="hello"></menu-item>
+
+
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.component('menu-item', {
+            props: ['title', 'content'],
+            data: function() {
+                return {
+                    msg: '组件使用',
+                }
+            },
+            // 注意,单引号里面用双引号
+            template: '<div>{{msg+"-----"+title+"---"+content}}</div>'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                psmg: '基础组件数值',
+                ptitle: '工具条名称'
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

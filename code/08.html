@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid,
+        .book,
+        #app h1 {
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+        }
+        
+        #app h1 {
+            margin-bottom: 20px;
+        }
+        
+        .book {
+            background-color: orange;
+            border-bottom: 1px dashed pink;
+        }
+        
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .grid table th,
+        td {
+            height: 35px;
+            line-height: 35px;
+            padding: 10px;
+            border: 1px dotted orange;
+        }
+        
+        .grid table th {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <div>
+            <h1>图书管理系统</h1>
+            <div class="book">
+                <label for="id">编号:</label>
+                <!-- 这个:disabled中的冒号作用是啥 -->
+                <input type="text" id="id" v-model='id' :disabled="flag">
+                <label for="id">书名:</label>
+                <input type="text" id="name" v-model='name'>
+                <button @click='handle'>提交</button>
+            </div>
+        </div>
+        <div class="grid">
+            <table>
+                <thead>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </thead>
+                <tbody>
+                    <tr :key='item.id' v-for='item in books'>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <a href="" @click.prevent='toEdit(item.id)'>修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent='toDelect(item.id)'>删除</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                books: [{
+                        id: 1,
+                        name: '小丸子',
+                        date: '2018-01-01'
+                    }, {
+                        id: 2,
+                        name: '小丸子的',
+                        date: '2018-01-01'
+                    }, {
+                        id: 3,
+                        name: '小丸子的哥哥',
+                        date: '2018-01-01'
+                    }, {
+                        id: 4,
+                        name: '小丸子的姐姐',
+                        date: '2018-01-01'
+                    },
+
+                ]
+            },
+            methods: {
+                // 添加操作
+                handle: function() {
+                    if (this.flag) {
+                        this.books.some((item) => {
+                            if (item.id == this.id) {
+                                item.name = this.name;
+                            }
+                            return true;
+                        });
+                        this.flag = false;
+                    } else {
+                        // 添加操作
+                        var book = {};
+                        book.id = this.id;
+                        book.name = this.name;
+                        book.date = this.date;
+                        this.books.push(book);
+                        // 清空
+                        this.id = '';
+                        this.name = '';
+                    }
+                },
+                // 编辑操作
+                toEdit: function(id) {
+                    this.flag = true;
+                    console.log(id);
+                    var book = this.books.filter(function(item) {
+                        return item.id == id;
+                    });
+                    console.log(book);
+                    this.id = book[0].id;
+                    this.name = book[0].name;
+                    // 三个等号的区别复习
+                    // 一个=赋值的意思
+                    // 二个和三个公有属性就是用来判断 判断  判断是否两边项相等
+                },
+                toDelect: function(id) {
+                    // 通过id确定删除的数组中的某个对象
+                    this.books.filter(function(item) {
+                        return item.id != id;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

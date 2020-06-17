@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 1.差值表达式{{}}
+
+
+
+    2.指令
+    本质就是自定义属性;
+    格式:v-开头比如v-clock;
+
+    v-clock;的用法,用来解决闪动;
+    解决原理:先隐藏,替换好值以后再显示
+
+
+
+    3.指令
+    
+    数据绑定指令
+    <div v-xxx=''>
+    v-text  不存在闪动
+    v-html  可以解析
+    v-pre   原始信息
+    
+    数据响应式
+    页面响应式
+    数据响应式 数据变化会导致页面内容也变化
+    数据绑定:把这数据填充到标签中
+    v-once 只编译一次:显示内容以后不在具有响应式功能
+
+    4.双向数据绑定
+    <div id="app">{{msg}}</div>
+    <input type="text" name="" id="" v-modle='msg'/>
+
+    mvvm设计思想
+    model view view-Modle
+
+
+
+    5.事件绑定
+    1.v-on指令用法
+    <div id="app">
+        <div>{{num}}</div>
+        <div>   
+            <button v-on:click='num++'></button>
+            <button @:click='num++'></button>
+        </div>
+    </div>
+
+    var vm=new Vue({
+        el:'#app';
+        date:{
+            num:0;
+        }
+    })
+
+    事件函数调用方式
+    直接绑定函数名称
+    <button v-on:click='say'>hi</button>
+    调用函数
+    <button v-on:click='say()'>Say his</button> -->
+
+    事件修饰符号 .stop阻止冒泡
+    <a href="" @click.stop="handle">跳转</a> prevent阻止默认行为
+    <a href="" @click.prevent="handle">跳转</a> 案件修饰符号
+    <button @keyup.enter='submit'></button>
+    <button @keyup.delete='handle'></button> 自定义 全局config.keyCodes对象 Vue.config.keyCodes.f1=112
+    <button @keyup.112='handle'></button> 1.动态处理属性 v-bind:href='url' 简写:href='url' v-model底层原理 class样式护理 1.对象语法 v-bind:class="{active:isAcive,error:isError}" 2.数组语法 style样式护理 v-bind:style="{active:isAcive,error:isError}" v-bind:class="[isAcive,isError]"
+    6.分枝循环结构 v-if='' v-else-if='' v-else='' v-show="flag" flag=false/ture if/show区别在于if条件不满足,就不会渲染在页面,show是已经渲染看看是否显示 循环遍历 v-for v-for='{value,key,index} in object' v-for 和v-if结合 v-if='value===12' v-for='{value,key,index} in object'
+
+</body>
+
+</html>

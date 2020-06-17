@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model='fname'>
+            <button @click='add'>
+                click
+            </button>
+            <button @click='del'>
+                click
+            </button>
+        </div>
+        <ul>
+            <li :key='index' v-for='(item,index) in list'>{{item}}</li>
+        </ul>
+
+        <div>{{info.name}}</div>
+        <div>{{info.gender}}</div>
+    </div>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: ['apple', 'banana', 'lemon'],
+                info: {
+                    name: 'jack',
+                    age: '18'
+                }
+            },
+            methods: {
+                add: function() {
+                    this.list.push(this.fname)
+                },
+                del: function() {
+                    this.list.pop()
+                }
+            }
+        });
+        vm.$set(vm.info, 'gender', 'femal')
+            // vm.$set(vm.目标数组/对象,'数组就用索引号index,对象就用具体对象','需要改成的数值')
+    </script>
+</body>
+
+</html>

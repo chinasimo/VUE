@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <span>输入用户名:</span>
+        <span><input type="text" name="" id="" v-model='uname'></span>
+        <div>
+            {{tip}}
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var formcheckvm = new Vue({
+            el: '#app',
+            data: {
+                uname: '',
+                tip: ''
+            },
+            methods: {
+                checkName: function(uname) {
+                    var that = this;
+                    setTimeout(() => {
+                        if (uname == 'admin') {
+                            that.tip = '您的用户名已存在';
+                        } else {
+                            that.tip = "填写成功"
+                        }
+                    }, 2000);
+                }
+            },
+            watch: {
+                uname: function(val) {
+                    this.checkName(val);
+                    this.tip = '正在验证中';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+常用特性 表单 input单行文本 textarea radio checkbox select 注意点 1.事件修饰符prevent 2.下拉也可以多选multiple="true" 表单域修饰符 number转化为数字 trim去开始结尾空格 中间去不掉 lazy input变成change事件---change事件 失去焦点触发事件 应用场景注册页面名字已存在 自定义指令 例子默认获取焦点 Vue.directive('focus',{ inserted:function(el){ el.focus
+} }) 带有参数的自定义指令 Vue.directive('color',{ inserted:function(el,binding){ el.style.backgroundColor=binding.value.color; } }) 里面date:{mag:{color:"red"}} 调用就是 v-color='msg' 局部指令 directives：{ color：{ bind:function(el,binding){ el.style.backgroundColor==binding.value.color
+} } } directives：{ focus：{ inserted:function(el){ el.focus() } } } 计算属性 computed:{ reverMessage:function(){ return this.msg.split('').reverse('').join('') } } 计算属性和方法区别 计算属性是有缓存的 侦听器 watch{ } 过滤式 自定义 Vue.filter('名字',function(value){ 业务逻辑 }) 级联 {{msa|lower}}
+局部过滤器只能在本组件使用

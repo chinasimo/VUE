@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-cloak>{{num}}</div>
+        <div>
+            <div>{{num}}</div>
+            <button @click='Hande0'>点击</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+                num: 0
+            },
+            methods: {
+                Hande0: function() {
+                    this.num++;
+                },
+                Hande1: function(event) {
+                    event.stopPropagation();
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

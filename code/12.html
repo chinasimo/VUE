@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    组件插槽
+    <slot>默认内容</slot>
+    如果组件有传递内容,那就用传递的内容,
+    如果没有为空,那就传递插槽的默认内容
+
+    具名插槽
+    以及应用背景
+    -->
+    <div id="app">
+        <fruit-list :list='list'></fruit-list>
+    </div>
+
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.component('fruit-list', {
+            props: ['list'],
+            // data用就要return一个对象
+            template: `
+        <div>
+
+                <li :key='item.id'  v-for=' item in list'>{{item.name}}</li>
+
+        </div>`
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    name: 'apple',
+                }, {
+                    id: 2,
+                    name: 'orrange',
+                }, {
+                    id: 3,
+                    name: 'lemon',
+                }, ]
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>
